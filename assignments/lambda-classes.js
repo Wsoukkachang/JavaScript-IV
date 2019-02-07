@@ -62,3 +62,68 @@ class ProjectManagers extends Instructor {
         return `${this.name} debugs ${student.name}'s code on ${subject}`;
     }
 }
+
+//------OBJECTS------
+const cam = new Instructor({
+    name: 'Cam',
+    location: 'Los Angeles',
+    age: 31,
+    gender: 'male',
+    favLanguage: 'JavaScript',
+    specialty: 'Front-end',
+    catchPhrase: `Don't forget the homies`
+  });
+
+const dan = new Instructor({
+    name: 'dan',
+    location: 'Denver',
+    age: 32,
+    gender: 'male',
+    favLanguage: 'C++',
+    specialty: 'Back-end',
+    catchPhrase: `I like pizza`
+  });
+
+const will = new Student({
+    name: 'will',
+    location: 'Dallas',
+    age: 30,
+    gender: 'male',
+    previousBackground: 'Dermatology',
+    className: 'WEBPT4',
+    favSubjects: ["Math", "Computer Science", "Art"]
+  });
+
+  const sally = new Student({
+    name: 'sally',
+    location: 'New York',
+    age: 25,
+    gender: 'female',
+    previousBackground: 'Accountant',
+    className: 'WEBPT3',
+    favSubjects: ["Math", "Statistics", "English"]
+  });
+
+  const steve = new ProjectManagers({
+    name: 'Steve',
+    location: 'Salt Lake City',
+    age: 35,
+    gender: 'male',
+    favLanguage: 'C#',
+    specialty: 'Back-end',
+    catchPhrase: `Code for life`,
+    gradClassName: 'CS1',
+    favInstructor: 'Cam'
+  });
+
+  const maria = new ProjectManagers({
+    name: 'Maria',
+    location: 'Washington DC',
+    age: 37,
+    gender: 'female',
+    favLanguage: 'Python',
+    specialty: 'Back-end',
+    catchPhrase: `I code in my sleep`,
+    gradClassName: 'CS2',
+    favInstructor: 'Dan'
+  });
