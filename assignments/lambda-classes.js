@@ -18,11 +18,11 @@ class Instructor extends Person {
         this.favLanguage = childAttributes.favLanguage;
         this.catchPhrase = childAttributes.catchPhrase;
     }
-    demo() {
+    demo(subject) {
         return `Today we are learning about ${subject}`;
     }
 
-    grade() {
+    grade(student, subject) {
         return `${student.name} receives a perfect score on ${subject}`;
     }
 }
@@ -35,15 +35,15 @@ class Student extends Person {
         this.favSubjects = childAttributes.favSubjects;
     }
     listsSubjects() {
-        return `${this.favSubjects}`;
+        return `${this.favSubjects[0]}, ${this.favSubjects[1]}, ${this.favSubjects[2]} `;
     }
 
     PRAssignment(subject) {
-        return `${student.name} has submitted a PR for ${subject}`;
+        return `${this.name} has submitted a PR for ${subject}`;
     }
 
-    printChallenge(subject) {
-        return `${student.name} has begun sprint challenge on ${subject}`;
+    sprintChallenge(subject) {
+        return `${this.name} has begun sprint challenge on ${subject}`;
     }
 }
 
@@ -75,7 +75,7 @@ const cam = new Instructor({
   });
 
 const dan = new Instructor({
-    name: 'dan',
+    name: 'Dan',
     location: 'Denver',
     age: 32,
     gender: 'male',
@@ -85,7 +85,7 @@ const dan = new Instructor({
   });
 
 const will = new Student({
-    name: 'will',
+    name: 'Will',
     location: 'Dallas',
     age: 30,
     gender: 'male',
@@ -95,7 +95,7 @@ const will = new Student({
   });
 
   const sally = new Student({
-    name: 'sally',
+    name: 'Sally',
     location: 'New York',
     age: 25,
     gender: 'female',
@@ -127,3 +127,11 @@ const will = new Student({
     gradClassName: 'CS2',
     favInstructor: 'Dan'
   });
+
+  console.log(cam.demo('JavaScript'));
+  console.log(dan.grade(sally, 'English'));
+  console.log(will.listsSubjects());
+  console.log(sally.PRAssignment('Art'));
+  console.log(will.sprintChallenge('Physics'));
+  console.log(steve.standUp('PT'));
+  console.log(maria.debugsCode(will, 'Math'));
