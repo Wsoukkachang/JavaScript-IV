@@ -51,48 +51,40 @@ Prototype Refactor
 
 // Test you work by un-commenting these 3 objects and the list of console logs below:
 
-function GameObject(attributes) {
-    this.createdAt = attributes.createdAt;
-    this.name = attributes.name;
-    this.dimensions = attributes.dimensions;
-  }
+class GameObject {
+    constructor (attributes) {
+        this.createdAt = attributes.createdAt;
+        this.name = attributes.name;
+        this.dimensions = attributes.dimensions;
+    }
+    destroy() {
+        return `${this.name} was removed from the game.`;
+      }
+    }
   
-  // * destroy() prototype method that returns: '{this.name} was removed
-  GameObject.prototype.destroy = function() {
-    return `${this.name} was removed from the game.`;
-  }
   
-  function CharacterStats(childAttributes) {
-    // bind the this keyword to the Parent constructor
-    GameObject.call(this, childAttributes);
-    this.healthPoints = childAttributes.healthPoints;
-  }
+class CharacterStats extends GameObject {
+      constructor (childAttributes) {
+          super(childAttributes);
+          this.healthPoints = childAttributes.healthPoints;
+        }
+        takeDamage() {
+            return `${this.name} took damage.`;
+          }
+        }
   
-  // We are recreating the Child prototype to now include Parent as well.
-  CharacterStats.prototype = Object.create(GameObject.prototype);
-  
-  // * takeDamage() prototype method -> returns the string '<object name> took damage.'
-  CharacterStats.prototype.takeDamage = function() {
-    return `${this.name} took damage.`;
-  }
-  
-  function Humanoid(gChildAttributes) {
-    // bind the this keyword to the Parent constructor
-    CharacterStats.call(this, gChildAttributes);
-    this.team = gChildAttributes.team;
-    this.weapons = gChildAttributes.weapons;
-    this.language = gChildAttributes.language;
-  }
-  
-  // We are recreating the Child prototype to now include Parent as well.
-  Humanoid.prototype = Object.create(CharacterStats.prototype);
-  
-  // Must place new methods AFTER the Object.create();
-  
-  // * greet() prototype method -> returns the string '<object name> offers a greeting in <object language>.'
-  Humanoid.prototype.greet = function() {
-    return `${this.name} offers a greeting in ${this.language}.`;
-  }
+ class Humanoid extends CharacterStats {
+     constructor (gChildAttributes) {
+         super(gChildAttributes);
+         this.team = gChildAttributes.team;
+         this.weapons = gChildAttributes.weapons;
+         this.language = gChildAttributes.language;
+        }
+        greet() {
+            return `${this.name} offers a greeting in ${this.language}.`;
+        }
+    }
+
   
   //---------------------------------//
     const mage = new Humanoid({
