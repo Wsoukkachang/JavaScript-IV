@@ -25,6 +25,26 @@ class Instructor extends Person {
     grade(student, subject) {
         return `${student.name} receives a perfect score on ${subject}`;
     }
+
+    // stretch --- randomly add or subtract points to a student's grade
+    checkAssignment(student) {
+        if (Math.random() > 0.5) {
+            return `${student.name} receives a ${student.grade + Math.random()} on most recent assignment`;
+        }
+        else {
+            return `${student.name} receives a ${student.grade - Math.random()} on most recent assignment`;
+        }
+    }
+
+    // stretch --- checks student's grade is over 70
+    graduate(student) {
+        if (student.grade > 70) {
+            return `Congratulations ${student.name}! You're ready to graduate from Lambda School!`;
+        }
+        else {
+            return `${student.name} is not ready to graduate. Will continue grading more assignment. ${this.checkAssignment(student)}`;
+        }
+    }
 }
 
 class Student extends Person {
@@ -33,6 +53,7 @@ class Student extends Person {
         this.previousBackground = childAttributes.previousBackground;
         this.className = childAttributes.className;
         this.favSubjects = childAttributes.favSubjects;
+        this.grade = childAttributes.grade; // part of stretch
     }
     listsSubjects() {
         return `${this.favSubjects[0]}, ${this.favSubjects[1]}, ${this.favSubjects[2]} `;
@@ -91,7 +112,8 @@ const will = new Student({
     gender: 'male',
     previousBackground: 'Dermatology',
     className: 'WEBPT4',
-    favSubjects: ["Math", "Computer Science", "Art"]
+    favSubjects: ["Math", "Computer Science", "Art"],
+    grade: 90
   });
 
   const sally = new Student({
@@ -101,7 +123,8 @@ const will = new Student({
     gender: 'female',
     previousBackground: 'Accountant',
     className: 'WEBPT3',
-    favSubjects: ["Math", "Statistics", "English"]
+    favSubjects: ["Math", "Statistics", "English"],
+    grade: 80
   });
 
   const steve = new ProjectManagers({
@@ -135,3 +158,6 @@ const will = new Student({
   console.log(will.sprintChallenge('Physics'));
   console.log(steve.standUp('PT'));
   console.log(maria.debugsCode(will, 'Math'));
+
+  console.log(cam.checkAssignment(will)); // stretch
+  console.log(cam.graduate(will)); // stretch
